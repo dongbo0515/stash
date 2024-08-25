@@ -33,8 +33,8 @@ proxies:
   port: 33430
   ports: 35001-36000
   hope-interval: 15
-  up: 40 Mbps
-  down: 440 Mbps
+  up-speed: 40
+  down-speed: 440
   client-fingerprint: chrome
   type: hysteria2
   password: 368d1d1c-9197-43fd-b28e-00a779040e5e
