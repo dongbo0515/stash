@@ -11,6 +11,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   listen: 0.0.0.0:7874
+  
 proxies:
 - name: Racknerd
   server: r1.840501.xyz
@@ -43,6 +44,8 @@ proxies:
   skip-cert-verify: false
   alpn:
   - h3
+  udp: true
+  
 proxy-groups:
 - name: 自动选择
   type: url-test
