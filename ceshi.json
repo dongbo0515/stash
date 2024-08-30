@@ -62,7 +62,6 @@
       "tag": "DMIT-LA",
       "server": "dmitla.840501.xyz", 
       "server_port": 443,
-      "udp": true,
       "uuid": "80ccc076-2896-4ae1-a792-52a221228dd9", 
       "flow": "xtls-rprx-vision",
       "tls": {
@@ -84,7 +83,6 @@
       "tag": "V.PS-TYO",
       "server": "sb.840501.xyz", 
       "server_port": 57732,
-      "udp": true,
       "uuid": "3c62d24f-786c-4d5c-ad60-b432885b02e2", 
       "flow": "xtls-rprx-vision",
       "tls": {
