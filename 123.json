@@ -1,0 +1,191 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "debug",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "系统DNS",
+        "address": "local",
+        "detour": "全球直连"
+      },
+      {
+        "tag": "谷歌DNS",
+        "address": "https://dns.google/dns-query",
+        "detour": "手动选择"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "谷歌DNS"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "系统DNS"
+      },
+      {
+        "clash_mode": "global",
+        "server": "谷歌DNS"
+      },
+      {
+        "rule_set": "cnsite",
+        "server": "系统DNS"
+      }, 
+    ],
+    "strategy": "prefer_ipv4",
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
+    "final": "谷歌DNS"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fd00::1/126",
+      "mtu": 9000,
+      "gso": true,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "gvisor",
+      "sniff": true,
+      "sniff_override_destination": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "DMIT-LA",
+      "server": "dmitla.840501.xyz", 
+      "server_port": 443,
+      "udp": true
+      "uuid": "80ccc076-2896-4ae1-a792-52a221228dd9", 
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.nature.com", 
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "Q3MteRAjaeldXo4kZpCMxeD5UMjKM7RMA7pnyjw0QgM",
+          "short_id": "80b85da5"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "V.PS-TYO",
+      "server": "sb.840501.xyz", 
+      "server_port": 57732,
+      "udp": true
+      "uuid": "3c62d24f-786c-4d5c-ad60-b432885b02e2", 
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.lovelive-anime.jp", 
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "MuJBBX6fZMb45ChKgCCt7Ydi-sgs7qbG-sR3pof7sEs",
+          "short_id": "de89a2a4"
+        }
+      }
+    },
+    {
+      "type": "urltest",
+      "tag": "自动选择",
+      "outbounds": [
+        "DMIT-LA", 
+        "V.PS-TYO", 
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "interrupt_exist_connections": false
+    },
+    {
+      "type": "selector",
+      "tag": "手动选择",
+      "outbounds": [
+        "DMIT-LA", 
+        "V.PS-TYO", 
+        "自动选择"
+      ],
+      "default": "自动选择",
+      "interrupt_exist_connections": false
+    },
+    {
+      "type": "direct",
+      "tag": "全球直连",
+      "routing_mark": 100
+    },
+  ],
+  "route": {
+    "rules": [
+      {
+        "clash_mode": "direct",
+        "outbound": "全球直连"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "手动选择"
+      },
+      {
+        "rule_set": [
+          "cnip",
+          "cnsite"
+        ],
+        "outbound": "全球直连"
+      }, 
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "cnip",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/cn.srs",
+        "download_detour": "V.PS-TYO"
+      },
+      {
+        "type": "remote",
+        "tag": "cnsite",
+        "format": "binary",
+        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/cn.srs",
+        "download_detour": "V.PS-TYO"
+      }
+    ],
+    "auto_detect_interface": true,
+    "final": "手动选择"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true, 
+      "path": "cache.db", 
+      "store_fakeip": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui", 
+      "external_ui_download_url": "", 
+      "external_ui_download_detour": "自动选择",
+      "default_mode": "rule"
+    }
+  },
+  "ntp": {
+    "enabled": true,
+    "server": "time.apple.com",
+    "server_port": 123,
+    "interval": "30m",
+    "detour": "全球直连"
+  }
+}
