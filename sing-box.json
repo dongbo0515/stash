@@ -140,29 +140,8 @@
         "clash_mode": "global",
         "outbound": "手动选择"
       },
-      {
-        "rule_set": [
-          "cnip",
-          "cnsite"
-        ],
-        "outbound": "全球直连"
-      }, 
     ],
     "rule_set": [
-      {
-        "type": "remote",
-        "tag": "cnip",
-        "format": "binary",
-        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/cn.srs",
-        "download_detour": "V.PS-TYO"
-      },
-      {
-        "type": "remote",
-        "tag": "cnsite",
-        "format": "binary",
-        "url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geosite/cn.srs",
-        "download_detour": "V.PS-TYO"
-      }
     ],
     "auto_detect_interface": true,
     "final": "手动选择"
