@@ -13,7 +13,7 @@
       },
       {
         "tag": "谷歌DNS",
-        "address": "https://dns.google/dns-query",
+        "address": "8.8.8.8",
         "detour": "手动选择"
       }
     ],
