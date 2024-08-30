@@ -33,7 +33,7 @@
       {
         "rule_set": "cnsite",
         "server": "系统DNS"
-      }, 
+      }
     ],
     "strategy": "prefer_ipv4",
     "disable_cache": false,
@@ -62,7 +62,7 @@
       "tag": "DMIT-LA",
       "server": "dmitla.840501.xyz", 
       "server_port": 443,
-      "udp": true
+      "udp": true,
       "uuid": "80ccc076-2896-4ae1-a792-52a221228dd9", 
       "flow": "xtls-rprx-vision",
       "tls": {
@@ -84,7 +84,7 @@
       "tag": "V.PS-TYO",
       "server": "sb.840501.xyz", 
       "server_port": 57732,
-      "udp": true
+      "udp": true,
       "uuid": "3c62d24f-786c-4d5c-ad60-b432885b02e2", 
       "flow": "xtls-rprx-vision",
       "tls": {
@@ -106,7 +106,7 @@
       "tag": "自动选择",
       "outbounds": [
         "DMIT-LA", 
-        "V.PS-TYO", 
+        "V.PS-TYO"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
@@ -128,7 +128,7 @@
       "type": "direct",
       "tag": "全球直连",
       "routing_mark": 100
-    },
+    }
   ],
   "route": {
     "rules": [
@@ -146,7 +146,7 @@
           "cnsite"
         ],
         "outbound": "全球直连"
-      }, 
+      }
     ],
     "rule_set": [
       {
